@@ -1,0 +1,28 @@
+﻿@page
+@model Guessing_Game.Pages.IndexModel
+@{
+    ViewData["Title"] = "Guess the Number Game";
+}
+
+<h1>Guess the Secret Number</h1>
+
+<p>Try to guess the secret number between 1 and 100!</p>
+
+<form method="post">
+    <label for="guess">Enter your guess:</label>
+    <input type="number" id="guess" name="Guess" value="@(Model.Guess)" required />
+    <input type="submit" value="Submit" />
+</form>
+
+@if (Model.Message != null)
+{
+    <p>@Model.Message</p>
+}
+
+@if (Model.IsGameOver)
+{
+    <p>Congratulations! You guessed the secret number in @Model.NumberOfGuesses tries.</p>
+    <form method="post" action="/">
+        <input type="submit" value="Play Again" />
+    </form>
+}
